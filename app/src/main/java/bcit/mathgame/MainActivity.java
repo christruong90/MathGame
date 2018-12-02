@@ -35,19 +35,42 @@ public class MainActivity extends AppCompatActivity {
         final String[] operatorArray = getResources().getStringArray(R.array.operators);
 
 
-//        final int min = 0;
-//        final int max = 100;
-//        final int random = new Random().nextInt((max-min) +1) + min;
-
-
-
-
         myBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Random random = new Random();
-                num1.setText("" + random.nextInt(101));
-                num2.setText("" + random.nextInt(101));
+                int firstNum = random.nextInt(101);
+                int secondNum = random.nextInt(101);
+
+                if (firstNum == secondNum) {
+                    do {
+                        firstNum = random.nextInt(101);
+                        secondNum = random.nextInt(101);
+                    } while(firstNum == secondNum);
+                }
+
+
+                String op = operatorArray[new Random().nextInt(operatorArray.length)];
+
+
+                if (op.equals("-")) {
+                    do {
+                        firstNum = random.nextInt(101);
+                        secondNum = random.nextInt(101);
+                    } while(firstNum < secondNum);
+                }
+
+                if (op.equals("/")) {
+                    do {
+                        secondNum = random.nextInt(101);
+                    } while(secondNum ==0);
+                }
+
+
+
+
+                num1.setText("" + firstNum);
+                num2.setText("" + secondNum);
 
                 int value1 = Integer.valueOf(num1.getText().toString());
                 int value2 = Integer.valueOf(num2.getText().toString());
@@ -55,28 +78,21 @@ public class MainActivity extends AppCompatActivity {
                 int myAnswer = 0;
 
 
-                String op = operatorArray[new Random().nextInt(operatorArray.length)];
-
                 operator.setText(op);
-
-//                double answer = num1.getText() + operator.getText() + num2.getText();
-//
-//
-//                answer1.setText(num1.getText() + operator.getText() + num2.getText());
 
 
                 switch(op) {
-                    case("+"): myAnswer = value1 + value2; break;
-                    case("-"): myAnswer = value1 - value2;break;
-                    case("*"): myAnswer = value1 * value2;break;
-                    case("/"): myAnswer = value1 / value2;break;
+                    case("+"): myAnswer = value1 + value2;
+                                break;
+                    case("-"): myAnswer = value1 - value2;
+                                break;
+                    case("*"): myAnswer = value1 * value2;
+                                break;
+                    case("/"): myAnswer = value1 / value2;
+                                break;
+
                 }
-
                 answer1.setText("" + myAnswer);
-
-
-
-
             }
 
 

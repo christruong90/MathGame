@@ -28,14 +28,34 @@
         android:text="num2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/option1"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="329dp"
-        android:text="Button" />
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="406dp"
+        android:text="option1" />
+
+    <Button
+        android:id="@+id/option2"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="405dp"
+        android:text="option2" />
+
+    <Button
+        android:id="@+id/option3"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="405dp"
+        android:text="option3" />
 
     <TextView
         android:id="@+id/operator"
@@ -55,6 +75,26 @@
         android:layout_marginStart="169dp"
         android:layout_marginTop="84dp"
         android:text="Answer" />
+
+    <TextView
+        android:id="@+id/scoreBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="139dp"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="189dp"
+        android:layout_marginTop="34dp"
+        android:text="1" />
 
 
 </RelativeLayout>

@@ -1,5 +1,8 @@
 package bcit.mathgame;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int score = 0;
     String[] operatorArray = {"+", "-", "*", "/"};
     int round = 1;
+    String phone = "604-781-1430";
 
 
 
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         op2 = findViewById(R.id.option2);
         op3 = findViewById(R.id.option3);
         String answerString;
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.floater);
 
 
         generateRandomValues();
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         op1.setOnClickListener(this);
         op2.setOnClickListener(this);
         op3.setOnClickListener(this);
+        myFab.setOnClickListener(this);
 
 
 
@@ -197,6 +203,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.floater:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel://" + phone)));
             case R.id.option1:
                 if(op1.getText().toString().equals(calculate())) {
                     Toast.makeText(this, "option1 is RIGHT", Toast.LENGTH_SHORT).show();

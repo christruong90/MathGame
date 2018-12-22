@@ -28,10 +28,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView operator;
     TextView answer1;
     TextView rounds;
+    TextView question;
     int score = 0;
     String[] operatorArray = {"+", "-", "*", "/"};
     int round = 1;
     String phone = "604-781-1430";
+
+    int firstNum = 0;
+    int secondNum = 0;
+    String op = "";
 
 
 
@@ -42,18 +47,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        myBtn = findViewById(R.id.button);
         scoreBoard = findViewById(R.id.scoreBoard);
-        num1 = findViewById(R.id.firstNum);
+//        num1 = findViewById(R.id.firstNum);
         rounds = findViewById(R.id.round);
-        num2 = findViewById(R.id.secondNum);
+//        num2 = findViewById(R.id.secondNum);
         answer1 = findViewById(R.id.answer1);
-        operator = findViewById(R.id.operator);
+//        operator = findViewById(R.id.operator);
         op1 = findViewById(R.id.option1);
         op2 = findViewById(R.id.option2);
         op3 = findViewById(R.id.option3);
+        question = findViewById(R.id.txtQuestion);
+
         String answerString;
         FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.floater);
 
-
+        rounds.setText("ROUND: " + round);
+        scoreBoard.setText("SCORE: " + score);
         generateRandomValues();
         answerString = calculate();
         answer1.setText(answerString);
@@ -74,55 +82,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-//        myBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Random random = new Random();
-//                int myAnswer = 0;
-//                int firstNum = random.nextInt(101);
-//                int secondNum = random.nextInt(101);
-//
-//                // Numbers must both be distinct
-//                if (firstNum == secondNum) {
-//                    do {
-//                        firstNum = random.nextInt(101);
-//                        secondNum = random.nextInt(101);
-//                    } while(firstNum == secondNum);
-//                }
-//                String op = operatorArray[new Random().nextInt(operatorArray.length)];
-//
-//                // if operator minus, first num must be greater than second num to prevent negative answer.
-//                if (op.equals("-")) {
-//                    do {
-//                        firstNum = random.nextInt(101);
-//                        secondNum = random.nextInt(101);
-//                    } while(firstNum < secondNum);
-//                }
-//
-//                // second number cannot be zero if it is a division operator.
-//                if (op.equals("/")) {
-//                    do {
-//                        secondNum = random.nextInt(101);
-//                    } while(secondNum ==0);
-//                }
-//
-//                num1.setText("" + firstNum);
-//                num2.setText("" + secondNum);
-//                operator.setText(op);
-//
-//                switch(op) {
-//                    case("+"): myAnswer = firstNum + secondNum;
-//                                break;
-//                    case("-"): myAnswer = firstNum - secondNum;
-//                                break;
-//                    case("*"): myAnswer = firstNum * secondNum;
-//                                break;
-//                    case("/"): myAnswer = firstNum / secondNum;
-//                                break;
-//                }
-//                answer1.setText("" + myAnswer);
-//            }
-//        });
     }
 
     public void multipleChoice() {
@@ -149,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void generateRandomValues() {
         Random random = new Random();
                 int myAnswer = 0;
-                int firstNum = random.nextInt(101);
-                int secondNum = random.nextInt(101);
+                firstNum = random.nextInt(101);
+                secondNum = random.nextInt(101);
 
                 // Numbers must both be distinct
                 if (firstNum == secondNum) {
@@ -159,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         secondNum = random.nextInt(101);
                     } while(firstNum == secondNum);
                 }
-                String op = operatorArray[new Random().nextInt(operatorArray.length)];
+                op = operatorArray[new Random().nextInt(operatorArray.length)];
 
                 // if operator minus, first num must be greater than second num to prevent negative answer.
                 if (op.equals("-")) {
@@ -175,25 +134,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         secondNum = random.nextInt(101);
                     } while(secondNum ==0);
                 }
+                question.setText(firstNum + " " + op + " " + secondNum);
 
-                num1.setText("" + firstNum);
-                num2.setText("" + secondNum);
-                operator.setText(op);
+//                num1.setText("" + firstNum);
+//                num2.setText("" + secondNum);
+//                operator.setText(op);
     }
 
     public String calculate() {
         String myAnswer ="";
 
-        switch(operator.getText().toString()) {
+        switch(op) {
 
-                    case("+"): myAnswer ="" + (Integer.parseInt(num1.getText().toString()) + Integer.parseInt(num2.getText().toString()));
-                                break;
-                    case("-"): myAnswer = "" + (Integer.parseInt(num1.getText().toString()) - Integer.parseInt(num2.getText().toString()));
-                                break;
-                    case("*"): myAnswer = "" + (Integer.parseInt(num1.getText().toString()) * Integer.parseInt(num2.getText().toString()));
-                                break;
-                    case("/"): myAnswer = "" + (Integer.parseInt(num1.getText().toString()) / Integer.parseInt(num2.getText().toString()));
-                                break;
+//                    case("+"): myAnswer ="" + (Integer.parseInt(num1.getText().toString()) + Integer.parseInt(num2.getText().toString()));
+//                                break;
+//                    case("-"): myAnswer = "" + (Integer.parseInt(num1.getText().toString()) - Integer.parseInt(num2.getText().toString()));
+//                                break;
+//                    case("*"): myAnswer = "" + (Integer.parseInt(num1.getText().toString()) * Integer.parseInt(num2.getText().toString()));
+//                                break;
+//                    case("/"): myAnswer = "" + (Integer.parseInt(num1.getText().toString()) / Integer.parseInt(num2.getText().toString()));
+//                                break;
+            case("+"): myAnswer ="" + (firstNum + secondNum);
+                break;
+            case("-"): myAnswer = "" + (firstNum - secondNum);
+                break;
+            case("*"): myAnswer = "" + (firstNum * secondNum);
+                break;
+            case("/"): myAnswer = "" + (firstNum / secondNum);
+                break;
+
                 }
 
                 return myAnswer;
@@ -204,7 +173,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.floater:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel://" + phone)));
+                generateRandomValues();
+                multipleChoice();
+                answer1.setText(calculate());
+                Toast.makeText(this, "SKIP QUESTION", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.option1:
                 if(op1.getText().toString().equals(calculate())) {
                     Toast.makeText(this, "option1 is RIGHT", Toast.LENGTH_SHORT).show();
@@ -252,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             score = 0;
         }
-        scoreBoard.setText("" + score);
+        scoreBoard.setText("SCORE: " + score);
     }
 
     public void setRounds() {
@@ -261,6 +234,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             round = 1;
         }
-        rounds.setText("" + round);
+        rounds.setText("ROUND: " + round);
     }
 }
